@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 3. Display the application -->
+  <my-app>Loading...</my-app>
+  
+  <!-- 1. Load libraries -->
+  <!-- IE required polyfill -->
+  <!--<script src="node_modules/es6-shim/es6-shim.min.js"></script>-->
+
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
+  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
+
+  <!-- 2. Load our 'modules' -->
+  <script>
+(function(app) {
+  app.AppComponent =
+    ng.core.Component({
+      selector: 'my-app',
+      template: '<h1>My First Angular 2 App</h1>'
+    })
+    .Class({
+      constructor: function() {}
+    });
+})(window.app || (window.app = {}));
+
+(function(app) {
+  document.addEventListener('DOMContentLoaded', function() {
+    ng
+      .platform
+      .browser
+      .bootstrap(app.AppComponent);
+  });
+})(window.app || (window.app = {}));
+  </script>
+</body>
+</html>
