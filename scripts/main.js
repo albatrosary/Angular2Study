@@ -10,7 +10,7 @@
   
   app.AppComponent = ng.core
     .Component({
-       selector: 'my-main',
+       selector: 'app-main',
        template: `
           <h1>Component Router</h1>
           <a [routerLink]="['Home']">Crisis Center</a>

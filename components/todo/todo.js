@@ -9,7 +9,7 @@
   /* Componentsの登録 */
   app.TodoComponent =
     ng.core.Component({
-        selector: 'my-todo',
+        selector: 'app-todo',
         templateUrl: 'components/todo/todo.html'
       })
       .Class({

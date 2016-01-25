@@ -1,6 +1,8 @@
 (function(app) {
   
-  var Home = function () {}
+  var Home = function () {
+    this.name = 'Angular';
+  }
   
   Home.prototype.someMethod = function () {
     
@@ -9,7 +11,7 @@
   /* Componentsの登録 */
   app.HomeComponent =
     ng.core.Component({
-        selector: 'my-home',
+        selector: 'app-home',
         templateUrl: 'components/home/home.html'
       })
       .Class({
