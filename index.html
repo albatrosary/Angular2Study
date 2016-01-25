@@ -5,18 +5,15 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- 3. Display the application -->
+  <!-- 1. Display the application -->
   <my-app>Loading...</my-app>
   
-  <!-- 1. Load libraries -->
-  <!-- IE required polyfill -->
-  <!--<script src="node_modules/es6-shim/es6-shim.min.js"></script>-->
-
+  <!-- 2. Load libraries -->
   <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
   <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
   <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
 
-  <!-- 2. Load our 'modules' -->
+  <!-- 3. Load our 'modules' -->
   <script>
 (function(app) {
   app.AppComponent =
@@ -31,10 +28,7 @@
       });
       
   document.addEventListener('DOMContentLoaded', function() {
-    ng
-      .platform
-      .browser
-      .bootstrap(app.AppComponent);
+    ng.platform.browser.bootstrap(app.AppComponent);
   });
 })(window.app || (window.app = {}));
   </script>
