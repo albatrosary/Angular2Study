@@ -13,7 +13,7 @@
        selector: 'app-main',
        template: `
           <h1>Component Router</h1>
-          <a [routerLink]="['Home']">Crisis Center</a>
+          <a [routerLink]="['Home']">Home</a>
           <a [routerLink]="['Todo']">Todos</a>
           <router-outlet></router-outlet>
         `,
