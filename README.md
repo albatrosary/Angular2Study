@@ -50,6 +50,29 @@ HTML
 
 or
 
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular2 Study</title>
+</head>
+<body>
+  <!-- 1. Display the application -->
+  
+  <!-- 2. Load libraries -->
+  
+  <!-- 3. Load our 'modules' -->
+</body>
+</html>
+```
+
+IE11 options Load library
+
+```html
+<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+```
+
 ### Use CDN
 
 ```html
