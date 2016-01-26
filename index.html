@@ -14,6 +14,7 @@
   <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
 
   <!-- 3. Load our 'modules' -->
+  <script src="pipes/search.pipe.js"></script>
   <script>
 (function(app) {
   app.AppComponent =
@@ -22,11 +23,22 @@
         selector: 'my-app',
         template: `
         <input type="text" [(ngModel)]="hoge">
-        <span>{{hoge}}</span>
-        `
+        <ul>
+          <li *ngFor="#data of demoData | search:hoge">{{data.name}} - {{data.age}}</li>
+        </ul>
+        `,
+        pipes: [app.SearchPipe]
       })
       .Class({
-        constructor: function() {}
+        constructor: function() {
+          this.demoData = [
+            {name: '山田', age: 24},
+            {name: '田中', age: 28},
+            {name: '佐藤', age: 18},
+            {name: '井上', age: 32},
+            {name: '高橋', age: 46}
+          ]
+        }
       });
       
   document.addEventListener('DOMContentLoaded', function() {
