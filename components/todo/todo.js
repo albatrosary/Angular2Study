@@ -8,7 +8,8 @@
   
   /* Componentsの登録 */
   app.TodoComponent =
-    ng.core.Component({
+    ng.core
+      .Component({
         selector: 'app-todo',
         templateUrl: 'components/todo/todo.html'
       })
