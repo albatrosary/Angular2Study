@@ -3,12 +3,10 @@
 Branch
 * master: Install essential libraries
 * step2: Directive
-* step3: Install essential other libraries
+* step3: Pipe
 * step4: Routing(ngRoute)
 * step5: Todos
 * step6: Ajax
-* step7: Routing(ui-router)
-* step8: Routing Sample
 
 ## Create a project folder
 
