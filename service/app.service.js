@@ -9,6 +9,7 @@
   /* Componentsの登録 */
   app.AppService =
     ng.core
+      .Injectable()
       .Class({
         constructor: App
       });

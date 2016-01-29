@@ -14,4 +14,5 @@
       .Class({
         constructor: [app.AppService, Home]
       });
+    
 })(window.app || (window.app = {}));
