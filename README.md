@@ -50,5 +50,17 @@ index.htmlにこのpipeをロードさせインジェクトすると利用可能
 <script src="pipes/search.pipe.js"></script>
 ```
 
+インジェクションは`.Component`キーワードに`pipes: [app.SearchPipe]`を追加することで可能です。そうすると`.Component`は
+
 ```javascript
+.Component({
+  selector: 'my-app',
+  template: `
+  <input type="text" [(ngModel)]="hoge">
+  <ul>
+    <li *ngFor="#data of demoData | search:hoge">{{data.name}} - {{data.age}}</li>
+  </ul>
+  `,
+  pipes: [app.SearchPipe]
+})
 ```
