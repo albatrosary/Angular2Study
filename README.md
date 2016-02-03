@@ -6,6 +6,7 @@ Branch
 * step3: Pipe
 * step4: Routing(ngRoute)
 * step5: Serviceの利用
+* step6: Todos
 
 ## First Step
 
