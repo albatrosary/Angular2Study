@@ -7,6 +7,7 @@ Branch
 * step4: Routing(ngRoute)
 * step5: Serviceの利用
 * step6: Todos
+* step7: SystemJS
 
 ## First Step
 
