@@ -1,147 +1,131 @@
-# Angular2 Study
+# Angular2 Study - Step4: Routing(ngRoute)
 
-Branch
-* master: Install essential libraries
-* step2: Directive
-* step3: Install essential other libraries
-* step4: Routing(ngRoute)
-* step5: Todos
-* step6: Ajax
-* step7: Routing(ui-router)
-* step8: Routing Sample
+Angular2のルーティングはAngular1のものとは異なりコンポーネントルーティングと呼ばれています。準備として、ルーティングのためコンポーネントを2つ作ります。
 
-## Create a project folder
-
-```bash
-mkdir SampleApp && cd $_
+(components/home/home.html)
+```html
+<h1>My First {{name}} {{1+1}} App</h1>
 ```
 
-## Install essential libraries
-
-### Use npm
-
-```bash
-npm init -y
-npm install angular2@2.0.0-beta.1 --save
-npm install rxjs@5.0.0-beta.1 --save
+(components/home/home.js)
+```javascript
+(function(app) {
+  
+  var Home = function () {
+    this.name = 'Angular';
+  }
+  
+  Home.prototype.someMethod = function () {}
+  
+  /* Componentsの登録 */
+  app.HomeComponent = ng.core
+    .Component({
+      selector: 'app-home',
+      templateUrl: 'components/home/home.html'
+    })
+    .Class({
+      constructor: Home
+    });
+})(window.app || (window.app = {}));
 ```
 
-HTML
+
+(components/todo/todo.html)
+```html
+<h1>Todos</h1>
+```
+
+(components/todo/todo.js)
+```javascript
+(function(app) {
+  
+  var Todo = function () {}
+  
+  Todo.prototype.someMethod = function () {}
+  
+  app.TodoComponent = ng.core
+    .Component({
+      selector: 'app-todo',
+      templateUrl: 'components/todo/todo.html'
+    })
+    .Class({
+      constructor: Todo
+    });
+})(window.app || (window.app = {}));
+```
+
+`index.html`でこのコンポーネントを読み込ませます
+```html
+<!-- 3. Load our 'modules' -->
+<script src="components/home/home.js"></script>
+<script src="components/todo/todo.js"></script>
+```
+
+次にルーティングの設定を行います。ルーティングの設定は`scripts/main.js`で行います。ディレクティブは
+
+* router-outle
+* routerLink
+
+を利用します。まとめると下記のようになります：
+
+(scripts/main.js)
+```javascript
+(function(app) {
+  app.AppComponent = ng.core
+    .Class({
+      constructor: function () {}
+    });
+  
+  app.AppComponent = ng.core
+    .Component({
+       selector: 'app-main',
+       template: `
+          <h1>Component Router</h1>
+          <a [routerLink]="['Home']">Home</a>
+          <a [routerLink]="['Todo']">Todos</a>
+          <router-outlet></router-outlet>
+        `,
+       directives:[
+         ng.router.ROUTER_DIRECTIVES
+       ]
+    })(app.AppComponent);
+  
+  app.AppComponent =
+    ng.router
+      .RouteConfig([
+        {path: '/home', name: 'Home', component: app.HomeComponent, useAsDefault: true},
+        {path: '/todo', name: 'Todo', component: app.TodoComponent}
+      ])(app.AppComponent);
+      
+  document.addEventListener('DOMContentLoaded', function() {
+    ng.platform.browser.bootstrap(app.AppComponent, [ng.router.ROUTER_PROVIDERS]);
+  });
+})(window.app || (window.app = {}));
+```
+
+このファイルを`index.html`から読み込ませると完了です。
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Angular2 Study</title>
+  <base href="/">
+  <title>Document</title>
 </head>
 <body>
   <!-- 1. Display the application -->
+  <app-main>loading...</app-main>
   
   <!-- 2. Load libraries -->
   <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
   <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
   <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
-  
+
   <!-- 3. Load our 'modules' -->
+  <script src="components/home/home.js"></script>
+  <script src="components/todo/todo.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
 ```
-
-or
-
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
-```
-
-IE11 options Load library
-
-```html
-<script src="node_modules/es6-shim/es6-shim.min.js"></script>
-```
-
-### Use CDN
-
-```html
-```
-
-## Simple development http server
-
-### node:
-
-```bash
-npm install live-server
-live-server
-```
-
-### node:
-
-```bash
-npm install http-server
-http-server
-```
-
-### Ruby
-
-```bash
-ruby -run -e httpd -- -p 8000 
-```
-
-or
-
-```bash
-ruby -rwebrick -e 'WEBrick::HTTPServer.new(:DocumentRoot => "./", :Port => 8000).start'
-```
-
-### Python 2系
-
-```bash
-python -m SimpleHTTPServer
-```
-
-## Check Module
-
-Add to the body tag of Index.html
-
-```html
-<!-- 1. Display the application -->
-<my-app>Loading...</my-app>
-
-<!-- 2. Load libraries -->
-・・・
-
-<!-- 3. Load our 'modules' -->
-  <script>
-(function(app) {
-  app.AppComponent =
-    ng
-      .core
-      .Component({
-        selector: 'my-app',
-        template: '<h1>My First Angular {{1+1}} App</h1>'
-      })
-      .Class({
-        constructor: function() {}
-      });
-      
-  document.addEventListener('DOMContentLoaded', function() {
-    ng.platform.browser.bootstrap(app.AppComponent);
-  });
-})(window.app || (window.app = {}));
-  </script>
-```
-
-"My First Angular 2 App" is displayed in the browser!
