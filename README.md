@@ -1,147 +1,54 @@
-# Angular2 Study
+# Angular2 Study - Step2: Pipe
 
-Branch
-* master: Install essential libraries
-* step2: Directive
-* step3: Install essential other libraries
-* step4: Routing(ngRoute)
-* step5: Todos
-* step6: Ajax
-* step7: Routing(ui-router)
-* step8: Routing Sample
+カスタムフィルタを作成します。カスタムフィルタはAngular2ではPipeを使って作成します。先ほどの一覧を絞り込むためのPipeを作成します。
 
-## Create a project folder
+## Create pipe folder
 
 ```bash
-mkdir SampleApp && cd $_
+mkdir pipes && cd $_
+touch search.pipe.js
 ```
 
-## Install essential libraries
+## Pipe
 
-### Use npm
+Pipeを利用するためには`ng.core.Pipe`キーワードを利用します。つまり
 
-```bash
-npm init -y
-npm install angular2@2.0.0-beta.1 --save
-npm install rxjs@5.0.0-beta.1 --save
-```
-
-HTML
-
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
-```
-
-or
-
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
-```
-
-IE11 options Load library
-
-```html
-<script src="node_modules/es6-shim/es6-shim.min.js"></script>
-```
-
-### Use CDN
-
-```html
-```
-
-## Simple development http server
-
-### node:
-
-```bash
-npm install live-server
-live-server
-```
-
-### node:
-
-```bash
-npm install http-server
-http-server
-```
-
-### Ruby
-
-```bash
-ruby -run -e httpd -- -p 8000 
-```
-
-or
-
-```bash
-ruby -rwebrick -e 'WEBrick::HTTPServer.new(:DocumentRoot => "./", :Port => 8000).start'
-```
-
-### Python 2系
-
-```bash
-python -m SimpleHTTPServer
-```
-
-## Check Module
-
-Add to the body tag of Index.html
-
-```html
-<!-- 1. Display the application -->
-<my-app>Loading...</my-app>
-
-<!-- 2. Load libraries -->
-・・・
-
-<!-- 3. Load our 'modules' -->
-  <script>
+```javascript
 (function(app) {
-  app.AppComponent =
-    ng
-      .core
-      .Component({
-        selector: 'my-app',
-        template: '<h1>My First Angular {{1+1}} App</h1>'
+  var [class_name] = function () {
+    
+  }
+  [class_name].prototype.transform = function (value, args...) {
+  
+  }
+        
+  app.SearchPipe =
+    ng.core
+      .Pipe({
+        name: '[pipe_name]'
       })
-      .Class({
-        constructor: function() {}
-      });
-      
-  document.addEventListener('DOMContentLoaded', function() {
-    ng.platform.browser.bootstrap(app.AppComponent);
-  });
+      .Class({constructor: [class_name]});
+
 })(window.app || (window.app = {}));
-  </script>
 ```
 
-"My First Angular 2 App" is displayed in the browser!
+valueとargs は 次のような関係にあります：`value | pipes args...`
+`transform`メソッドを使い文字の変換等を行います。
+
+前方一致検索の場合にはクラスを`Search`とすると次のようになります：
+
+```javascript
+Search.prototype.transform = function (value, hoge) {
+  return value.filter((item)=>item.name.startsWith(hoge)) 
+}
+```
+
+index.htmlにこのpipeをロードさせインジェクトすると利用可能となります：
+
+```html
+<!-- 3. Load our 'modules' -->
+<script src="pipes/search.pipe.js"></script>
+```
+
+```javascript
+```
