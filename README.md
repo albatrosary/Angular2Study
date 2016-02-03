@@ -7,6 +7,11 @@ Branch
 * step4: Routing(ngRoute)
 * step5: Serviceの利用
 
+## First Step
+
+First, Try to do this!
+[quickstart](https://angular.io/docs/ts/latest/quickstart.html)
+
 ## Create a project folder
 
 ```bash
