@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <base href="/">
-  <title>Document</title>
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <!-- 1. Display the application -->
-  <div class="container">
-    <app-main>loading...</app-main>
-  </div>
-  
-  <!-- 2. Load libraries -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 1. Display the application -->
+    <my-app>Loading...</my-app>
+    
+    <!-- 2. Load libraries -->
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
-  <!-- 3. Load our 'modules' -->
-  <script src="service/app.service.js"></script>
-  <script src="components/home/home.js"></script>
-  <script src="components/todo/todo.js"></script>
-  <script src="scripts/main.js"></script>
-</body>
+    <!-- 3. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {        
+          scripts: {
+            format: 'register',
+            defaultExtension: 'js'
+          },       
+          components: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('scripts/main')
+        .then(null, console.error.bind(console));
+    </script>
+  </body>
 </html>

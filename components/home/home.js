@@ -1,18 +1,29 @@
-(function(app) {
-  var Home = function (AppService) {
-    this.name = AppService.someMethod();
-  }
-  
-  /* Componentsの登録 */
-  app.HomeComponent =
-    ng.core
-      .Component({
-        selector: 'app-home',
-        templateUrl: 'components/home/home.html',
-        providers: [app.AppService]
-      })
-      .Class({
-        constructor: [app.AppService, Home]
+System.register(['angular2/core'], function(exports) {
+  var core;
+  return {
+    setters:[
+      function (args) {
+        core = args;
+      }],
+    execute: function() {
+      var vm;
+      
+      var constructor = function() {
+        vm = this;
+        vm.name = 'Angular'
+      }
+      
+      var Component = core.Class({
+        constructor: constructor
       });
-    
-})(window.app || (window.app = {}));
+
+      Component = 
+        core.Component({
+          selector: 'my-app',
+          templateUrl: 'components/home/home.html'
+        })(Component);
+
+      exports("AppComponent", Component);
+    }
+  }
+});
