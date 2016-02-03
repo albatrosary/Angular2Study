@@ -1,29 +1,11 @@
-# Angular2 Study
-
-Branch
-* master: Install essential libraries
-* step2: Directive
-* step3: Install essential other libraries
-* step4: Routing(ngRoute)
-* step5: Todos
-* step6: Ajax
-* step7: Routing(ui-router)
-* step8: Routing Sample
-
-## Create a project folder
-
-```bash
-mkdir SampleApp && cd $_
-```
+# Angular2 Study - Step7: SystemJS
 
 ## Install essential libraries
 
 ### Use npm
 
 ```bash
-npm init -y
-npm install angular2@2.0.0-beta.1 --save
-npm install rxjs@5.0.0-beta.1 --save
+npm install systemjs --save
 ```
 
 HTML
@@ -37,111 +19,97 @@ HTML
 </head>
 <body>
   <!-- 1. Display the application -->
+  <my-app>Loading...</my-app>
   
   <!-- 2. Load libraries -->
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
   <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
   
   <!-- 3. Load our 'modules' -->
 </body>
 </html>
 ```
 
-or
+## SystemJS Config
 
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
-```
-
-IE11 options Load library
-
-```html
-<script src="node_modules/es6-shim/es6-shim.min.js"></script>
-```
-
-### Use CDN
-
-```html
-```
-
-## Simple development http server
-
-### node:
-
-```bash
-npm install live-server
-live-server
-```
-
-### node:
-
-```bash
-npm install http-server
-http-server
-```
-
-### Ruby
-
-```bash
-ruby -run -e httpd -- -p 8000 
-```
-
-or
-
-```bash
-ruby -rwebrick -e 'WEBrick::HTTPServer.new(:DocumentRoot => "./", :Port => 8000).start'
-```
-
-### Python 2系
-
-```bash
-python -m SimpleHTTPServer
-```
-
-## Check Module
-
-Add to the body tag of Index.html
-
-```html
-<!-- 1. Display the application -->
-<my-app>Loading...</my-app>
-
-<!-- 2. Load libraries -->
-・・・
-
+```javascript
 <!-- 3. Load our 'modules' -->
-  <script>
-(function(app) {
-  app.AppComponent =
-    ng
-      .core
-      .Component({
-        selector: 'my-app',
-        template: '<h1>My First Angular {{1+1}} App</h1>'
-      })
-      .Class({
-        constructor: function() {}
-      });
-      
-  document.addEventListener('DOMContentLoaded', function() {
-    ng.platform.browser.bootstrap(app.AppComponent);
+<script>
+  System.config({
+    packages: {        
+      scripts: {
+        format: 'register',
+        defaultExtension: 'js'
+      },       
+      components: {
+        format: 'register',
+        defaultExtension: 'js'
+      }
+    }
   });
-})(window.app || (window.app = {}));
-  </script>
+  System.import('scripts/main')
+    .then(null, console.error.bind(console));
+</script>
 ```
 
-"My First Angular 2 App" is displayed in the browser!
+各モジュールはSystemJSを利用すると
+
+(scripts/main.js)
+```javascript
+System.register(['angular2/platform/browser', '../components/home/home'], function(exports) {
+  var browser, app;
+  return {
+    setters:[
+      function (args) {
+        browser = args;
+      },
+      function (args) {
+        app = args;
+      }],
+    execute: function() {
+      browser.bootstrap(app.AppComponent);
+    }
+  }
+});
+```
+
+(components/home/home.js)
+```javascript
+System.register(['angular2/core'], function(exports) {
+  var core;
+  return {
+    setters:[
+      function (args) {
+        core = args;
+      }],
+    execute: function() {
+      var vm;
+      
+      var constructor = function() {
+        vm = this;
+        vm.name = 'Angular'
+      }
+      
+      var Component = core.Class({
+        constructor: constructor
+      });
+
+      Component = 
+        core.Component({
+          selector: 'my-app',
+          templateUrl: 'components/home/home.html'
+        })(Component);
+
+      exports("AppComponent", Component);
+    }
+  }
+});
+```
+
+(components/home/home.html)
+```html
+<h1>My First {{name}} {{1+1}} App</h1>
+```
