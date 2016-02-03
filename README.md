@@ -5,8 +5,7 @@ Branch
 * step2: Directive
 * step3: Pipe
 * step4: Routing(ngRoute)
-* step5: Todos
-* step6: Ajax
+* step5: Serviceの利用
 
 ## Create a project folder
 
