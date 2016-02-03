@@ -1,10 +1,19 @@
 (function(app) {
+  var vm;
   
-  var Todo = function () {}
-  
-  Todo.prototype.someMethod = function () {
-    
+  function Todo() {
+    vm = this;
+    this.todoList = [];
   }
+
+  Todo.prototype.addTodo = function () {
+    vm.todoList.push(vm.item);
+    vm.item = '';
+  };
+
+  Todo.prototype.removeTodo = function (index) {
+    vm.todoList.splice(index, 1);
+  };
   
   /* Componentsの登録 */
   app.TodoComponent =
