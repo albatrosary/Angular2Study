@@ -9,8 +9,7 @@ Branch
 
 ## First Step
 
-First, Try to do this!
-[quickstart](https://angular.io/docs/ts/latest/quickstart.html)
+First, Try to do [quickstart](https://angular.io/docs/ts/latest/quickstart.html).
 
 ## Create a project folder
 
