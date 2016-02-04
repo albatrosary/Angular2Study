@@ -8,6 +8,7 @@ Branch
 * step5: Serviceの利用
 * step6: Todos
 * step7: SystemJS
+* step8: TypeScript
 
 ## First Step
 
