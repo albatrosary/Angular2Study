@@ -1,147 +1,95 @@
 # Angular2 Study
 
-Branch
-* master: Install essential libraries
-* step2: Directive
-* step3: Install essential other libraries
-* step4: Routing(ngRoute)
-* step5: Todos
-* step6: Ajax
-* step7: Routing(ui-router)
-* step8: Routing Sample
-
-## Create a project folder
-
-```bash
-mkdir SampleApp && cd $_
-```
-
 ## Install essential libraries
 
 ### Use npm
 
 ```bash
-npm init -y
-npm install angular2@2.0.0-beta.1 --save
-npm install rxjs@5.0.0-beta.1 --save
+npm i typescript --save-dev
+npm i concurrently --save-dev
+npm i lite-server --save-dev
 ```
 
-HTML
+## main.ts
 
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-all.umd.js"></script>
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
+`main.js`をTypescriptで記述します
+
+(scripts/main.js)
+```javascript
+System.register(['angular2/platform/browser', '../components/home/home'], function(exports) {
+  ...
+});
+```
+は
+
+(scripts/main.ts)
+```typescript
+import {bootstrap}    from 'angular2/platform/browser'
+import {AppComponent} from '../components/home/home'
 ```
 
-or
+`setters`や`execute`は記載する必要が無く`browser.bootstrap(app.AppComponent);`の部分は
 
-```html
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular2 Study</title>
-</head>
-<body>
-  <!-- 1. Display the application -->
-  
-  <!-- 2. Load libraries -->
-  
-  <!-- 3. Load our 'modules' -->
-</body>
-</html>
+```typescript
+bootstrap(AppComponent);
 ```
 
-IE11 options Load library
+## home.ts
 
-```html
-<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+同様に
+
+(components/home/home.ts)
+```typescript
+import {Component} from 'angular2/core'
+
+@Component({
+  selector: 'my-app',
+  templateUrl: 'components/home/home.html'
+})
+export class AppComponent {
+  public name = 'Angular';
+}
 ```
 
-### Use CDN
+## typescript設定
 
-```html
+Angular2チュートリアルにもあるように`tsconfig.json`を定義します
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
 ```
 
-## Simple development http server
+## npm コマンドの設定
 
-### node:
+こちらもAngular2チュートリアルにしたがい
+
+```json
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+  },
+```
+
+## 実行
+
+npnコマンドで実行します
 
 ```bash
-npm install live-server
-live-server
+npm start
 ```
-
-### node:
-
-```bash
-npm install http-server
-http-server
-```
-
-### Ruby
-
-```bash
-ruby -run -e httpd -- -p 8000 
-```
-
-or
-
-```bash
-ruby -rwebrick -e 'WEBrick::HTTPServer.new(:DocumentRoot => "./", :Port => 8000).start'
-```
-
-### Python 2系
-
-```bash
-python -m SimpleHTTPServer
-```
-
-## Check Module
-
-Add to the body tag of Index.html
-
-```html
-<!-- 1. Display the application -->
-<my-app>Loading...</my-app>
-
-<!-- 2. Load libraries -->
-・・・
-
-<!-- 3. Load our 'modules' -->
-  <script>
-(function(app) {
-  app.AppComponent =
-    ng
-      .core
-      .Component({
-        selector: 'my-app',
-        template: '<h1>My First Angular {{1+1}} App</h1>'
-      })
-      .Class({
-        constructor: function() {}
-      });
-      
-  document.addEventListener('DOMContentLoaded', function() {
-    ng.platform.browser.bootstrap(app.AppComponent);
-  });
-})(window.app || (window.app = {}));
-  </script>
-```
-
-"My First Angular 2 App" is displayed in the browser!
