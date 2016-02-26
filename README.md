@@ -63,7 +63,7 @@ touch app.service.js
 </head>
 <body>
   <!-- 1. Display the application -->
-  <app-main>loading...</app-main>
+  <my-app>loading...</my-app>
   
   <!-- 2. Load libraries -->
   <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
