@@ -1,9 +1,14 @@
 import {Component} from 'angular2/core'
+import {DetailApp} from '../detail/detail'
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'components/home/home.html'
+  template: `
+    <detail-app bank-name="RBC" account-id="4747" (everySecond)="everySecond()" (everyFiveSeconds)="everyFiveSeconds()"></detail-app>
+  `,
+  directives: [DetailApp]
 })
 export class AppComponent {
-  public name = 'Angular';
+  everySecond() { console.log('second'); }
+  everyFiveSeconds() { console.log('five seconds'); }
 }
