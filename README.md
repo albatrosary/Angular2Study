@@ -6,9 +6,10 @@ Branch
 * step3: Pipe
 * step4: Routing(ngRoute)
 * step5: Serviceの利用
-* step6: Todos
+* step6: Todos(ES5)
 * step7: SystemJS
 * step8: TypeScript
+* step9: Todos(TS)
 
 ## First Step
 
@@ -26,7 +27,7 @@ mkdir SampleApp && cd $_
 
 ```bash
 npm init -y
-npm install angular2@2.0.0-beta.7 --save
+npm install angular2@2.0.0-beta.15 --save
 npm install rxjs@5.0.0-beta.2 --save
 ```
 
