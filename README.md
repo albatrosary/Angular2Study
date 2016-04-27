@@ -9,7 +9,8 @@ Branch
 * step6: Todos(ES5)
 * step7: SystemJS
 * step8: TypeScript
-* step9: Todos(TS)
+* step9: @Output and @Input
+* step10: Todos(TS)
 
 ## First Step
 
