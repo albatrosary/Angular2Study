@@ -1,14 +1,19 @@
 import {Component} from 'angular2/core'
-import {DetailApp} from '../detail/detail'
+import {TodoHead} from './home.head'
+import {TodoBody} from './home.body'
 
 @Component({
   selector: 'my-app',
   template: `
-    <detail-app bank-name="RBC" account-id="4747" (everySecond)="everySecond()" (everyFiveSeconds)="everyFiveSeconds()"></detail-app>
-  `,
-  directives: [DetailApp]
+    <h2>Todo</h2>
+    <todo-head [(todo-list)]="todolist"></todo-head>
+    <hr>
+    <todo-body [(todo-list)]="todolist"></todo-body>
+    `,
+  directives: [TodoHead, TodoBody]
 })
+
 export class AppComponent {
-  everySecond() { console.log('second'); }
-  everyFiveSeconds() { console.log('five seconds'); }
+  public todolist = [];
 }
+　
