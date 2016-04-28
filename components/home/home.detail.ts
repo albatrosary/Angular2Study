@@ -9,7 +9,7 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core'
         <button class="btn btn-danger" (click)="onClick($event)" aria-label="Remove">X</button>
       </span>
     </p>
-  `,
+  `
 })
 
 export class DetailApp {
