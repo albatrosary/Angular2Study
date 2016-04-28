@@ -11,8 +11,7 @@ import {Component, Input} from 'angular2/core'
         </span>
       </div>
     </form>
-  `,
-  directives: []
+  `
 })
 
 export class TodoHead {
