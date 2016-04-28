@@ -6,14 +6,13 @@ import {TodoBody} from './home.body'
   selector: 'my-app',
   template: `
     <h2>Todo</h2>
-    <todo-head [(todo-list)]="todolist"></todo-head>
+    <todo-head [todo-list]="todolist"></todo-head>
     <hr>
-    <todo-body [(todo-list)]="todolist"></todo-body>
+    <todo-body [todo-list]="todolist"></todo-body>
     `,
   directives: [TodoHead, TodoBody]
 })
 
 export class AppComponent {
-  public todolist = [];
+  private todolist: string[] = [];
 }
-　
