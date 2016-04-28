@@ -14,6 +14,8 @@ import {DetailApp} from './home.detail'
 })
 
 export class TodoBody {
-  @Input('todo-list') todolist: string[];
+  @Input('todo-list')
+  private todolist: string[];
+  
   onDelete(index) {this.todolist.splice(index, 1);}
 }
