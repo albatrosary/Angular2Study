@@ -17,7 +17,10 @@ import {Component, Input} from 'angular2/core'
 
 export class TodoHead {
   private item: string;
-  @Input('todo-list') todolist: string[];
+  
+  @Input('todo-list')
+  private todolist: string[];
+  
   addTodo() {
     this.todolist.push(this.item);
     this.item = '';
