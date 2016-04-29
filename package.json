@@ -1,7 +1,7 @@
 {
   "name": "angular2-study",
   "version": "1.0.0",
-  "description": "",
+  "description": "Angular2 Study",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,14 +10,21 @@
     "type": "git",
     "url": "git+https://github.com/albatrosary/Angular2Study.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "angular2",
+    "typescript"
+  ],
+  "author": "Fumio SAGAWA",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/albatrosary/Angular2Study/issues"
   },
   "homepage": "https://github.com/albatrosary/Angular2Study#readme",
   "dependencies": {
-    "angular2": "^2.0.0-beta.1",
-    "rxjs": "^5.0.0-beta.1"
+    "angular2": "2.0.0-beta.17",
+    "es6-shim": "0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "0.6.12"
   }
 }
