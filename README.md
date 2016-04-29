@@ -28,8 +28,8 @@ mkdir SampleApp && cd $_
 
 ```bash
 npm init -y
-npm install angular2@2.0.0-beta.15 --save
-npm install rxjs@5.0.0-beta.2 --save
+npm install angular2@2.0.0-beta.17 --save
+npm install rxjs@5.0.0-beta.6 --save
 ```
 
 HTML
