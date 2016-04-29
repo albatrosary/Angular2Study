@@ -5,7 +5,7 @@ import {DetailApp} from './home.detail'
   selector: 'todo-body',
   template: `
     <div>
-      <todo-detail *ngFor="#item of todolist; #i = index"
+      <todo-detail *ngFor="let item of todolist; let i = index"
       todo-data="{{item}}"
       (on-delete)="onDelete(i)"></todo-detail>
     </div>
