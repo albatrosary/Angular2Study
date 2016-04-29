@@ -4,11 +4,7 @@
   "description": "Angular2 Study",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "lite": "lite-server -c bs-config.json",
-    "postinstall": "typings install -AS es6-shim jasmine"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -31,11 +27,5 @@
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.26",
     "zone.js": "0.6.12"
-  },
-  "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0",
-    "typescript": "^1.8.10",
-    "typings": "^0.8.1"
   }
 }
