@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <base href="/">
-    <title>Document</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <title>Document</title>
+</head>
+<body>
     <!-- 1. Display the application -->
     <my-app>Loading...</my-app>
     
@@ -15,7 +15,7 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-
+    
     <!-- 3. Configure SystemJS -->
     <script>
       System.config({
@@ -27,11 +27,15 @@
           components: {
             format: 'register',
             defaultExtension: 'js'
+          },       
+          services: {
+            format: 'register',
+            defaultExtension: 'js'
           }
         }
       });
       System.import('scripts/main')
         .then(null, console.error.bind(console));
     </script>
-  </body>
+</body>
 </html>

@@ -1,21 +1,25 @@
-import {Component, Input} from 'angular2/core'
+import {Component} from 'angular2/core'
 import {DetailApp} from './home.detail'
+import {TodoStore} from '../../services/todostore';
 
 @Component({
   selector: 'todo-body',
   template: `
-    <div>
-      <todo-detail *ngFor="let item of todolist; let i = index"
-      todo-data="{{item}}"
-      (on-delete)="onDelete(i)"></todo-detail>
-    </div>
+    <todo-detail *ngFor="let item of todolist; let i = index"
+    todo-data="{{item}}"
+    (on-delete)="onDelete(i)"></todo-detail>
     `,
   directives: [DetailApp]
 })
 
 export class TodoBody {
-  @Input('todo-list')
   private todolist: string[];
   
-  onDelete(index) {this.todolist.splice(index, 1);}
+  constructor (private todoStore: TodoStore) {
+   this.todolist = todoStore.getList();
+  }
+ 
+  onDelete(index) {
+    this.todoStore.delete(index);
+  }
 }

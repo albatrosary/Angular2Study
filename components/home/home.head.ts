@@ -1,4 +1,5 @@
 import {Component, Input} from 'angular2/core'
+import {TodoStore} from '../../services/todostore';
 
 @Component({
   selector: 'todo-head',
@@ -17,11 +18,10 @@ import {Component, Input} from 'angular2/core'
 export class TodoHead {
   private item: string;
   
-  @Input('todo-list')
-  private todolist: string[];
+  constructor(private todoStore: TodoStore) {}
   
   addTodo() {
-    this.todolist.push(this.item);
-    this.item = '';
+    this.todoStore.add(this.item);
+    this.item = null;
   }
 }
