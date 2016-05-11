@@ -11,7 +11,6 @@ import {TodoStore} from '../../services/todostore';
     `,
   directives: [DetailApp]
 })
-
 export class TodoBody {
   private todolist: string[];
   
