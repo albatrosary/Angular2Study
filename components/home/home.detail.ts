@@ -11,8 +11,8 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core'
     </p>
   `
 })
-
 export class DetailApp {
+  
   @Input('todo-data')
   private data: string;
   
@@ -22,4 +22,5 @@ export class DetailApp {
   onClick($event): void {
     this.onDelete.emit($event);
   }
+  
 }
