@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core'
+import {Component} from '@angular/core'
 import {TodoHead} from './home.head'
 import {TodoBody} from './home.body'
 import {TodoStore} from '../../services/todostore';
